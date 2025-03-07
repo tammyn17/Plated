@@ -46,12 +46,14 @@ async function displayRecipes() {
               <div class="recipe">
                 <h2>${recipe.title || "No Title"}</h2>
                 <p>${recipe.summary || "No Summary"}</p>
-                <p>Ingredients: ${
+                <hr>
+                <p><strong>Ingredients: </strong>${
                   recipe.ingredients && Array.isArray(recipe.ingredients)
                     ? recipe.ingredients.join(", ")
                     : "None"
                 }</p>
-                <p>Instructions: ${recipe.instructions || "No Instructions"}</p>
+                <hr>
+                <p><strong>Instructions: </strong>${recipe.instructions || "No Instructions"}</p>
               </div>
             `;
       })

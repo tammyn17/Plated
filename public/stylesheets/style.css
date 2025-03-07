@@ -1,0 +1,45 @@
+#recipeList {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 16px; 
+    justify-content: center; 
+  }
+
+.recipe {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px 0;
+    flex: 1 1 100%; /* Default: Full width on mobile */
+    max-width: 100%; 
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  
+  .recipe h2 {
+    font-size: 1.5em;
+    margin-bottom: 18px;
+  }
+  
+  .recipe p {
+    margin: 20px 0;
+    color: #000000;
+  }
+  
+  /* 2 cards per row */
+@media (min-width: 600px) {
+    .recipe {
+      flex: 1 1 calc(50% - 16px); /* Each card takes 50% minus the gap */
+      max-width: calc(50% - 16px);
+    }
+  }
+  
+  /* 3 cards per row */
+  @media (min-width: 1024px) {
+    .recipe {
+        flex: 1 1 calc(33.33% - 16px); /* Each card takes 33.33% minus the gap */
+        max-width: calc(33.33% - 16px);
+      }
+  }

@@ -33,4 +33,8 @@ app.use((req, res, next) => {
 
 app.use("/api", router);
 
+app.listen(3000, 'localhost', () => {
+  console.log('App listening at http://localhost:3000')
+})
+
 export default app;
