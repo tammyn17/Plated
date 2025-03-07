@@ -1,3 +1,22 @@
+body {
+    background-color: #fffdfa;
+}
+
+.page-title {
+    font-family:Arial, Helvetica, sans-serif;
+    color: #fcbf49;
+}
+
+h2 {
+    font-family:Arial, Helvetica, sans-serif;
+    color: #f77f00;
+}
+
+p {
+    font-family:Arial, Helvetica, sans-serif;
+    color: #003049;
+}
+
 #recipeList {
     display: flex; 
     flex-wrap: wrap; 
@@ -25,7 +44,7 @@
   
   .recipe p {
     margin: 20px 0;
-    color: #000000;
+    color: #003049;
   }
   
   /* 2 cards per row */
