@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
@@ -31,10 +33,53 @@ app.use((req, res, next) => {
   next();
 });
 
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    resave: false,
+    cookie: { maxAge: oneDay }
+}))
+
+const authConfig = {
+    auth: {
+        clientId: process.env.AZURE_CLIENT_ID,
+        authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
+        clientSecret: process.env.AZURE_CLIENT_SECRET,
+        redirectUri: "/redirect"
+    },
+    system: {
+        loggerOptions: {
+            loggerCallback(loglevel, message, containsPii) {
+                console.log(message);
+            },
+            piiLoggingEnabled: false,
+            logLevel: 3,
+        }
+    }
+}
+const authProvider = await WebAppAuthProvider.WebAppAuthProvider.initialize(authConfig);
+
+app.use(authProvider.authenticate());
+
+app.get('/signin', (req, res, next) => {
+    return req.authContext.login({
+        postLoginRedirectUri: "/",
+    })(req, res, next);
+})
+
+app.get('/signout', (req, res, next) => {
+    return req.authContext.logout({
+        postLogoutRedirectUri: "/",
+    })(req, res, next);
+})
+
 app.use("/api", router);
 
-app.listen(3000, 'localhost', () => {
-  console.log('App listening at http://localhost:3000')
-})
+// app.listen(3000, 'localhost', () => {
+//   console.log('App listening at http://localhost:3000')
+// })
+
+app.use(authProvider.interactionErrorHandler());
 
 export default app;

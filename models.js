@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import mongoose from 'mongoose';
 
 let models = {};
@@ -5,7 +7,7 @@ let models = {};
 main()
 
 async function main() {
-   await mongoose.connect('mongodb+srv://tammyn3:passWord13@cluster0.bv1ht.mongodb.net/?retryWrites=true&w=majority&appName=Plated');
+   await mongoose.connect(process.env.MONGO_URI);
 
    console.log('Connected to MongoDB');
 
@@ -14,11 +16,22 @@ async function main() {
        summary: String,
        ingredients: [String],
        instructions: String,
-       // user: String,
+       user: String,
+       likes: [{ type: String }],
        created_date: { type: Date, default: Date.now }
    })
    models.Post = mongoose.model('Post', recipeSchema);
    console.log('Post model created');
+
+   const commentSchema = new mongoose.Schema({
+        username: String,
+        comment: String,
+        post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' },
+        created_date: { type: Date, default: () => new Date() }
+    })
+    models.Comment = mongoose.model('Comment', commentSchema)
+    console.log("comment model created");
+
 }
 
 export default models;
