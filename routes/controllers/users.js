@@ -3,7 +3,7 @@ import models from '../../models.js';
 
 var router = express.Router();
 
-app.get("/myIdentity", (req, res) => {
+router.get("/myIdentity", (req, res) => {
     if (!req.session.account) {
         res.json({ status: "loggedout" });
     } else {
@@ -16,3 +16,5 @@ app.get("/myIdentity", (req, res) => {
         });
     }
 });
+
+export default router;
