@@ -7,14 +7,16 @@
    <link rel="stylesheet" href="stylesheets/style.css">
    <script src="javascripts/index.js"></script>
    <script src="javascripts/utils.js"></script>
+   <script src="javascripts/identity.js"></script>
 </head>
-<body>
+<body onload="init()">
    <header>
        <h1 class="page-title">Recipe Sharing </h1>
        <!-- <a href="/users/">Get your user info</a><br>
        <a href="/signin">Login</a><br>
        <a href="/signout">Logout</a>
        <a href="/user/register">Sign Up</a> -->
+       <div id="identity_div"></div>  <!-- This div will dynamically show login/logout buttons -->
    </header>
    <main>
        <section>

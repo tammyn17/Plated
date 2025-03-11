@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/21a2cff1-3690-4040-8b12-be5e4ef3616a/resourceGroups/appsvc_linux_centralus2/providers/Microsoft.Web/sites/plated-app",
+    "appService.deploySubpath": "."
+}

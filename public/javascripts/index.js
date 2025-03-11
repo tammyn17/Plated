@@ -1,3 +1,8 @@
+async function init(){
+  await loadIdentity();
+  loadPosts();
+}
+
 async function postRecipe() {
   document.getElementById("postStatus").innerHTML = "sending data...";
   const title = document.getElementById("titleInput").value;
