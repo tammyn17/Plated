@@ -1,4 +1,5 @@
 # Plated
+https://plated.onrender.com/
 # API Endpoints
 POST /user Authenticate a user and create a
 session.
